@@ -19,3 +19,9 @@ variable "credential_filename" {
   description = "Download json from GCP -> service account -> keys and put in the same directly"
   type        = string
 }
+
+variable "db_deletion_protection" {
+  description = "Should be false for stag environment"
+  type        = bool
+  default     = true
+}
