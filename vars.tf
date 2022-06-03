@@ -1,7 +1,6 @@
 variable "project_id" {
   description = "GCP project ID"
   type        = string
-  default     = "central-embassy-352211"
 }
 
 variable "region" {
@@ -19,5 +18,4 @@ variable "zone" {
 variable "credential_filename" {
   description = "Download json from GCP -> service account -> keys and put in the same directly"
   type        = string
-  default     = "gcp-sa.json"
 }

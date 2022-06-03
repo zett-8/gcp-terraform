@@ -3,7 +3,7 @@ terraform {
     organization = "zett-8"
 
     workspaces {
-      name = "example-workspace"
+      name = "gcp-terraform"
     }
   }
 

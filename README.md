@@ -21,3 +21,12 @@ terraform apply
 ```shell
 terraform destroy
 ```
+
+**Switch vars depends on environment**
+```shell
+terraform plan -var-file="stag.tfvars"
+terraform plan -var-file="prod.tfvars"
+
+terraform apply -var-file="stag.tfvars"
+terraform apply -var-file="prod.tfvars"
+```
