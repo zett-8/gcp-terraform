@@ -1,55 +1,85 @@
 # Terraform template for GCP
 
-## Terraform cli Installation
+## Preparation
+1. Create GCP project
+
+
+2. Create a service account and give roles “Editor” and “Cloud run admin”
+
+
+3. Download service account api key 
+
+
+4. Install terraform cli
 https://learn.hashicorp.com/tutorials/terraform/install-cli
 
-1. First, install the HashiCorp tap, a repository of all our Homebrew packages.
-```shell
-brew tap hashicorp/tap
-```
 
-2. Now, install Terraform with hashicorp/tap/terraform.
-```shell
-brew install hashicorp/tap/terraform
-```
-
-3. To update to the latest version of Terraform, first update Homebrew.
-```shell
-brew update
-```
-
-4. Then, run the upgrade command to download and use the latest Terraform version.
-```shell
-brew upgrade hashicorp/tap/terraform
-```
-## Commands
-
-- Init terraform
+5. Init project
 ```shell
 terraform init
 ```
 
+6. Set all variables in *vars.tf*, *prod.tfvars* and *stag.tfvars*
+
+## Commands
 - Make a diff
 
 ```shell
-terraform plan
+make plan_stag 
+# this runs (terraform plan -var-file prod.tfvars)
+make plan_prod 
+# this runs (terraform plan -var-file stag.tfvars)
 ```
 
 - Apply changes
 ```shell
-terraform apply
+make apply_stag
+# this runs (terraform apply -var-file prod.tfvars)
+make apply_prod
+# this runs (terraform apply -var-file stag.tfvars)
 ```
 
 - Delete everything deployed
 ```shell
-terraform destroy
+make destroy_prod
+# this runs (terraform destroy -var-file prod.tfvars)
+make destroy_stag
+# this runs (terraform destroy -var-file stag.tfvars)
 ```
 
-**Switch vars depends on environment**
-```shell
-terraform plan -var-file="stag.tfvars"
-terraform plan -var-file="prod.tfvars"
+## All variables to set
 
-terraform apply -var-file="stag.tfvars"
-terraform apply -var-file="prod.tfvars"
-```
+basic settings
+
+- [ ] project_id
+- [ ] region
+- [ ] zone
+- [ ] credential_filename
+- [ ] db_deletion_protection
+
+cloud run settings
+
+- [ ] cloudRun_container_name
+- [ ] cloudRun_autoScaling_max
+- [ ] cloudRun_timeout_seconds
+- [ ] cloudRun_container_port
+- [ ] cloudRun_cpu_limit
+- [ ] cloudRun_memory_limit
+- [ ] cloudRun_traffic_percent
+- [ ] cloudRun_latest_revision
+- [ ] cloudRun_environment_variable1_name
+- [ ] cloudRun_environment_variable1_value
+
+cloud sql settings
+
+- [ ] cloudSQL_name
+- [ ] cloudSQL_database_version
+- [ ] cloudSQL_tier
+- [ ] cloudSQL_availability_type
+- [ ] cloudSQL_auto_resize
+- [ ] cloudSQL_disk_type
+- [ ] cloudSQL_disk_size
+- [ ] cloudSQL_backup_enable
+- [ ] cloudSQL_point_in_time_recovery
+- [ ] cloudSQL_user_name
+- [ ] cloudSQL_user_password

@@ -1,3 +1,3 @@
-project_id = "central-embassy-352211stag"
-credential_filename = "gcp-sa.json"
+project_id = "project id"
+credential_filename = "sample.json"
 db_deletion_protection = false

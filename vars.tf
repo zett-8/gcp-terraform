@@ -32,7 +32,7 @@ variable "db_deletion_protection" {
 
 variable "cloudRun_container_name" {
   type = string
-  default = ""
+  default = "container name"
 }
 
 variable "cloudRun_autoScaling_max" {
