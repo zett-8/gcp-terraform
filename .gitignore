@@ -1,7 +1,0 @@
-.DS_Store
-.idea
-
-.terraform*
-terraform*
-
-*.json
