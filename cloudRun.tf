@@ -1,39 +1,50 @@
 resource "google_cloud_run_service" "default" {
-  name = "test-container"
+  name = var.cloudRun_container_name
   location = var.region
 
   template {
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = 1
+        "autoscaling.knative.dev/maxScale" = var.cloudRun_autoScaling_max
         "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.instance.connection_name
       }
     }
 
     spec {
-      timeout_seconds = 60
+      timeout_seconds = var.cloudRun_timeout_seconds
 
       containers {
-        image = "us-docker.pkg.dev/cloudrun/container/hello"
+        image = "gcr.io/${var.project_id}/${var.cloudRun_container_name}:latest"
 
         env {
-          name = "FIRST_ENV"
-          value = "first env value"
+          name = var.cloudRun_environment_variable1_name
+          value = var.cloudRun_environment_variable1_value
         }
-
         env {
-          name = "SECOND ENV"
-          value = "second env value"
+          name = var.cloudRun_environment_variable2_name
+          value = var.cloudRun_environment_variable2_value
+        }
+        env {
+          name = var.cloudRun_environment_variable3_name
+          value = var.cloudRun_environment_variable3_value
+        }
+        env {
+          name = var.cloudRun_environment_variable4_name
+          value = var.cloudRun_environment_variable4_value
+        }
+        env {
+          name = var.cloudRun_environment_variable5_name
+          value = var.cloudRun_environment_variable5_value
         }
 
         ports {
-          container_port = 8080
+          container_port = var.cloudRun_container_port
         }
 
         resources {
           limits = {
-            cpu = 1
-            memory = "256Mi"
+            cpu = var.cloudRun_cpu_limit
+            memory = var.cloudRun_memory_limit
           }
         }
       }
@@ -41,8 +52,8 @@ resource "google_cloud_run_service" "default" {
   }
 
   traffic {
-    percent = 100
-    latest_revision = true
+    percent = var.cloudRun_traffic_percent
+    latest_revision = var.cloudRun_latest_revision
   }
 }
 

@@ -1,18 +1,18 @@
 resource "google_sql_database_instance" "instance" {
-  name             = "cloudrun-sql"
+  name             = var.cloudSQL_name
   region           = var.region
-  database_version = "POSTGRES_14"
+  database_version = var.cloudSQL_database_version
 
   settings {
-    tier = "db-f1-micro"
-    availability_type = "ZONAL" // high availability (REGIONAL) or single zone (ZONAL).
-    disk_autoresize = true
-    disk_type = "PD_SSD" // PD_SSD or PD_HDD
-    disk_size = 10
+    tier = var.cloudSQL_tier
+    availability_type = var.cloudSQL_availability_type
+    disk_autoresize = var.cloudSQL_auto_resize
+    disk_type = var.cloudSQL_disk_type
+    disk_size = var.cloudSQL_disk_size
 
     backup_configuration {
-      enabled = true
-      point_in_time_recovery_enabled = true
+      enabled = var.cloudSQL_backup_enable
+      point_in_time_recovery_enabled = var.cloudSQL_point_in_time_recovery
     }
   }
 
@@ -20,7 +20,7 @@ resource "google_sql_database_instance" "instance" {
 }
 
 resource "google_sql_user" "users" {
-  name     = "admin"
+  name     = var.cloudSQL_user_name
   instance = google_sql_database_instance.instance.name
-  password = "postgres"
+  password = var.cloudSQL_user_password
 }
