@@ -16,7 +16,7 @@ resource "google_sql_database_instance" "instance" {
     }
   }
 
-  deletion_protection  = var.db_deletion_protection
+  deletion_protection  = var.cloudSQL_deletion_protection
 }
 
 resource "google_sql_user" "users" {

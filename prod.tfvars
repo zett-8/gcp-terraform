@@ -1,3 +1,5 @@
-project_id = "project id"
+project_id = "project_id"
 credential_filename = "sample.json"
-db_deletion_protection = true
+cloudRun_container_name = "container_name"
+cloudSQL_deletion_protection = true
+cloudStorage_force_destroy = false

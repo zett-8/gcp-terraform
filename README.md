@@ -47,6 +47,14 @@ make destroy_stag
 # this runs (terraform destroy -var-file stag.tfvars)
 ```
 
+- Push docker image to GCP image registry
+```shell
+make gcp-push-image_prod
+# this runs (./scripts/gcloud-submit-docker-image.sh prod.tfvars)
+make gcp-push-image_stag
+# this runs (./scripts/gcloud-submit-docker-image.sh stag.tfvars)
+```
+
 ## All variables to set
 
 basic settings
@@ -55,7 +63,6 @@ basic settings
 - [ ] region
 - [ ] zone
 - [ ] credential_filename
-- [ ] db_deletion_protection
 
 cloud run settings
 
@@ -83,3 +90,16 @@ cloud sql settings
 - [ ] cloudSQL_point_in_time_recovery
 - [ ] cloudSQL_user_name
 - [ ] cloudSQL_user_password
+- [ ] cloudSQL_deletion_protection
+
+cloud storage settings
+
+- [ ] cloudStorage_bucket_name
+- [ ] cloudStorage_location
+- [ ] cloudStorage_force_destroy
+- [ ] cloudStorage_storage_class
+- [ ] cloudStorage_uniform_access
+- [ ] cloudStorage_cors_origin
+- [ ] cloudStorage_cors_method
+- [ ] cloudStorage_cors_response_header
+- [ ] cloudStorage_cors_max_age_seconds

@@ -14,6 +14,7 @@ resource "google_cloud_run_service" "default" {
       timeout_seconds = var.cloudRun_timeout_seconds
 
       containers {
+//        image = "us-docker.pkg.dev/cloudrun/container/hello"
         image = "gcr.io/${var.project_id}/${var.cloudRun_container_name}:latest"
 
         env {

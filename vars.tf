@@ -22,17 +22,10 @@ variable "credential_filename" {
   type        = string
 }
 
-variable "db_deletion_protection" {
-  description = "better to be false for stag environment"
-  type        = bool
-  default     = true
-}
-
 // cloud run settings
 
 variable "cloudRun_container_name" {
   type = string
-  default = "container name"
 }
 
 variable "cloudRun_autoScaling_max" {
@@ -72,59 +65,59 @@ variable "cloudRun_latest_revision" {
 
 variable "cloudRun_environment_variable1_name" {
   type = string
-  default = ""
+  default = "KEY1"
 }
 
 variable "cloudRun_environment_variable1_value" {
   type = string
-  default = ""
+  default = "VALUE1"
 }
 
 variable "cloudRun_environment_variable2_name" {
   type = string
-  default = ""
+  default = "KEY2"
 }
 
 variable "cloudRun_environment_variable2_value" {
   type = string
-  default = ""
+  default = "VALUE2"
 }
 
 variable "cloudRun_environment_variable3_name" {
   type = string
-  default = ""
+  default = "KEY3"
 }
 
 variable "cloudRun_environment_variable3_value" {
   type = string
-  default = ""
+  default = "VALUE3"
 }
 
 variable "cloudRun_environment_variable4_name" {
   type = string
-  default = ""
+  default = "KEY4"
 }
 
 variable "cloudRun_environment_variable4_value" {
   type = string
-  default = ""
+  default = "VALUE4"
 }
 
 variable "cloudRun_environment_variable5_name" {
   type = string
-  default = ""
+  default = "KEY5"
 }
 
 variable "cloudRun_environment_variable5_value" {
   type = string
-  default = ""
+  default = "VALUE5"
 }
 
 // cloud sql settings
 
 variable "cloudSQL_name" {
   type = string
-  default = "cloudrun-sql"
+  default = "cloud-sql"
 }
 
 variable "cloudSQL_database_version" {
@@ -177,4 +170,58 @@ variable "cloudSQL_user_name" {
 variable "cloudSQL_user_password" {
   type = string
   default = "postgrespassword"
+}
+
+variable "cloudSQL_deletion_protection" {
+  description = "better to be false for stag environment"
+  type        = bool
+  default     = true
+}
+
+// cloud storage settings
+
+variable "cloudStorage_bucket_name" {
+  type = string
+  default = "bucket_name"
+}
+
+variable "cloudStorage_location" {
+  type = string
+  description = "to deploy in multiple region, select from 'eu', 'us' and 'asia'"
+  default = "eu"
+}
+
+variable "cloudStorage_force_destroy" {
+  type = bool
+  default = false
+}
+
+variable "cloudStorage_storage_class" {
+  type = string
+  default = "STANDARD"
+}
+
+variable "cloudStorage_uniform_access" {
+  type = bool
+  default = true
+}
+
+variable "cloudStorage_cors_origin" {
+  type = list(string)
+  default = ["*"]
+}
+
+variable "cloudStorage_cors_method" {
+  type = list(string)
+  default = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+}
+
+variable "cloudStorage_cors_response_header" {
+  type = list(string)
+  default = ["*"]
+}
+
+variable "cloudStorage_cors_max_age_seconds" {
+  type = number
+  default = 3600
 }
