@@ -4,7 +4,7 @@ resource "google_storage_bucket" "bucket" {
   location      = var.cloudStorage_location
   force_destroy = var.cloudStorage_force_destroy
 
-  storage_class = var.cloudStorage_storage_class
+  storage_class               = var.cloudStorage_storage_class
   uniform_bucket_level_access = var.cloudStorage_uniform_access
 
   cors {
@@ -19,12 +19,12 @@ data "google_iam_policy" "viewer" {
   binding {
     role = "roles/storage.objectViewer"
     members = [
-        "allUsers",
+      "allUsers",
     ]
   }
 }
 
 resource "google_storage_bucket_iam_policy" "editor" {
-  bucket = google_storage_bucket.bucket.name
+  bucket      = google_storage_bucket.bucket.name
   policy_data = data.google_iam_policy.viewer.policy_data
 }
