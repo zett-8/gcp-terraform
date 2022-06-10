@@ -4,22 +4,27 @@
 1. Create GCP project
 
 
-2. Create a service account and give roles “Editor” and “Cloud run admin”
+2. Create a service account and give the following roles
+- [ ] Editor
+- [ ] Cloud run admin
+
+3. Enable the following APIs
+- [ ] Cloud Run API
+- [ ] Cloud SQL Admin API
+
+4. Download service account api key 
 
 
-3. Download service account api key 
-
-
-4. Install terraform cli
+5. Install terraform cli
 https://learn.hashicorp.com/tutorials/terraform/install-cli
 
 
-5. Init project
+6. Init project
 ```shell
 terraform init
 ```
 
-6. Set all variables in *vars.tf*, *prod.tfvars* and *stag.tfvars*
+7. Set all variables in *vars.tf*, *prod.tfvars* and *stag.tfvars*
 
 ## Commands
 - Make a diff
