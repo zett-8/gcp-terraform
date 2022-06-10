@@ -178,6 +178,11 @@ variable "cloudSQL_deletion_protection" {
   default     = true
 }
 
+variable "cloudSQL_user_deletion_policy" {
+  type = string
+  default = "ABANDON"
+}
+
 // cloud storage settings
 
 variable "cloudStorage_bucket_name" {

@@ -23,4 +23,5 @@ resource "google_sql_user" "users" {
   name     = var.cloudSQL_user_name
   instance = google_sql_database_instance.instance.name
   password = var.cloudSQL_user_password
+  deletion_policy = var.cloudSQL_user_deletion_policy
 }
