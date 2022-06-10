@@ -17,7 +17,7 @@ destroy_stag:
 	terraform destroy -var-file stag.tfvars
 
 gcp-push-image_prod:
-	./scripts/gcloud-submit-docker-image.sh prod.tfvars
+	./scripts/gcloud-submit-docker-image.sh prod.tfvars $(DOCKERFILE_PATH)
 
 gcp-push-image_stag:
-	./scripts/gcloud-submit-docker-image.sh stag.tfvars
+	./scripts/gcloud-submit-docker-image.sh stag.tfvars $(DOCKERFILE_PATH)

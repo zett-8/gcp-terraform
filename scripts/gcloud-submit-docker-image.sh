@@ -1,6 +1,12 @@
 #!/bin/bash
 
 file=$1
+DOCKERFILE_PATH=$2
+
+if [ -z "${DOCKERFILE_PATH}" ]; then
+  echo 'need to specify dockerfile path. e.g. make gcp-push-image_env DOCKER_FILEPATH=./'
+  exit
+fi
 
 project_id=''
 cloudRun_container_name=''
@@ -23,4 +29,4 @@ done < $file
 
 #echo "gcr.io/$project_id/$cloudRun_container_name:latest"
 
-gcloud builds submit --tag "gcr.io/$project_id/$cloudRun_container_name:latest" .
+gcloud builds submit --tag "gcr.io/$project_id/$cloudRun_container_name:latest" $DOCKERFILE_PATH
