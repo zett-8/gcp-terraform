@@ -22,7 +22,9 @@ https://learn.hashicorp.com/tutorials/terraform/install-cli
 
 6. Init project
 ```shell
-terraform init
+make init_prod 
+# or
+make init_stag
 ```
 
 7. Set all variables in *vars.tf*, *prod.tfvars* and *stag.tfvars*
