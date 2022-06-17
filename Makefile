@@ -1,20 +1,31 @@
+prod		= terraform workspace select prod
+prodvars 	= -var-file=prod.tfvars
+stag 		= terraform workspace select stag
+stagvars 	= -var-file=stag.tfvars
+
+init_prod:
+	$(prod) && terraform init
+
 plan_prod:
-	terraform plan -var-file=prod.tfvars
+	$(prod) && terraform plan $(prodvars)
 
 apply_prod:
-	terraform apply -var-file=prod.tfvars
-
-plan_stag:
-	terraform plan -var-file=stag.tfvars
-
-apply_stag:
-	terraform apply -var-file=stag.tfvars
+	$(prod) && terraform apply $(prodvars)
 
 destroy_prod:
-	terraform destroy -var-file=prod.tfvars
+	$(prod) && terraform destroy $(prodvars)
+
+init_stag:
+	$(stag) && terraform init
+
+plan_stag:
+	$(stag) && terraform plan $(stagvars)
+
+apply_stag:
+	$(stag) && terraform apply $(stagvars)
 
 destroy_stag:
-	terraform destroy -var-file=stag.tfvars
+	$(stag) && terraform destroy $(stagvars)
 
 gcp-push-image_prod:
 	./scripts/gcloud-submit-docker-image.sh prod.tfvars $(DOCKERFILE_PATH)
