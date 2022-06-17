@@ -7,6 +7,7 @@
 2. Create a service account and give the following roles
 - [ ] Editor
 - [ ] Cloud run admin
+- [ ] Cloud storage admin
 
 3. Enable the following APIs
 - [ ] Cloud Run API
